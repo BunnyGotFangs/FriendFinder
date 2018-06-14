@@ -126,15 +126,15 @@
                     <option value="5">5 (Eyes Wide Shut)</option>
                 </select>
                 <br>
-                <!-- Materialize Modal Trigger/Submit Button -->
+             
                 <button type ="submit" data-target="modal1" class="waves-effect waves-light btn modal-trigger cyan lighten-1" id="submitBtn">Submit</button>
             </div>
         </div>
         <div class='col s4'>
-            <p><a href='/api/friends'>List o Pals</a> | <a href='https://github.com/BunnyGotFangs/friendfinder' target='_blank'>GitHub Repo</a></p>
+            <p><a href='/api/friends'>Peeps</a> | <a href='https://github.com/BunnyGotFangs/friendfinder' target='_blank'>GitHub Repo</a></p>
         </div>
 
-        <!-- Materialize Modal Structure -->
+
         <div id="modal1" class="modal">
           <div class="modal-content">
             <h4>This Peep Popped for You</h4>
@@ -148,14 +148,15 @@
 
     </div>
 
-<!-- add needed js scripts -->    
+   
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-<!-- Grabs information and sends it to server -->
+<!-- not sure if the scripts should go here or should be in different file and called elsewhere--> 
+<!-- either way am not getting my peep to add or match to pop--> 
 <script type="text/javascript">
 $(document).ready(function() {
     $("#submitBtn").on("click", function() {
-        //form validation
+      
         function validateForm() {
             var isValid = true;
             $('.validate').each(function() {
@@ -170,9 +171,9 @@ $(document).ready(function() {
             });
             return isValid;
         }
-        //if everything is filled
+
         if (validateForm() == true) {
-            //creates a new friend from the values submitted
+
             var peeps = {
                 Name: $('#name').val().trim(),
                 Pic: $('#photo').val().trim(),
@@ -189,17 +190,17 @@ $(document).ready(function() {
                     $('#q10').val(),
                 ]
             };
-            //Grabs current URL of website
+ 
             var currentURL = window.location.origin;
-            //AJAX posts the data to friends API.
+
             $.post(currentURL + "/api/friends", peeps, function(data) {
-                //Grab the result from the AJAX post so that the best match's name and photo are displayed.
+                
                 $("#matchName").text(data.Name);
                 $("#matchPic").attr("src", data.Pic);
             });
-            // Show the modal with the best match
+           
                 $('.modal').modal();
-            //clear form after submission
+           
             $('#name').val("");
             $('#photo').val("");
             $('#q1').val("");
@@ -215,7 +216,7 @@ $(document).ready(function() {
         } else {
             alert("You Missed One. Need All the Frickin' Info")
         }
-        // return false;
+        
     });
 });
 </script>
